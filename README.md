@@ -1,5 +1,4 @@
 # Placed Affiliate SDK (Android) v1.20
-#### Last Updated: August 23, 2016
   
 ## Integrating your application with the Placed Monetization SDK
   
