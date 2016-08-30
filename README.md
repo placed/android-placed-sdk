@@ -73,7 +73,7 @@ dependencies {
         // This code needs to go into the onRequestPermissionsResult() method in the same Activity that calls ActivityCompat.requestPermissions
         if(requestCode == REQUEST_CODE_PERMISSION) {
             for(int idx = 0; idx < permissions.length; ++idx) {
-                if(Manifest.permission.ACCESS_FINE_LOCATION.equals(permissions[idx])) {
+                if(permissions[idx].equals(Manifest.permission.ACCESS_FINE_LOCATION) && grantResults[idx] == PackageManager.PERMISSION_GRANTED) {
                     // call a method that register the app or call one of the PlacedAgent registerApp methods
                     break;
                 }
