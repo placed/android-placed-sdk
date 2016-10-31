@@ -1,4 +1,4 @@
-# Placed Affiliate SDK (Android) v1.20
+# Placed Affiliate SDK (Android) v1.21
   
 ## Integrating your application with the Placed Monetization SDK
   
@@ -22,7 +22,7 @@ allprojects {
 dependencies {
     ...
 
-    compile 'com.placed.client:android-persistent-sdk:1.20'
+    compile 'com.placed.client:android-persistent-sdk:1.21'
 }
 ```
   
