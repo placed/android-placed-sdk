@@ -1,4 +1,4 @@
-# Placed Affiliate SDK (Android) v1.21
+# Placed Affiliate SDK (Android) v1.30
   
 ## Integrating your application with the Placed Monetization SDK
   
@@ -22,38 +22,17 @@ allprojects {
 dependencies {
     ...
 
-    compile 'com.placed.client:android-persistent-sdk:1.21'
+    compile 'com.placed.client:android-persistent-sdk:1.30'
 }
 ```
   
 ### Configuration
-* Add the following in the application tag in your **AndroidManifest.xml**. Make sure to replace **YOUR\_APP\_KEY** with the application key provided to you by Placed. Please be sure to have `BOOT_COMPLETED` and `PACKAGE_REPLACED` in separate intent filters.
-
+* Add the application key provided to you by Placed in the application tag of your **AndroidManifest.xml**.
         <meta-data android:name="placed_app_key" android:value="YOUR_APP_KEY" />  
-        <service android:name="com.placed.client.android.persistent.PlacedService"/>  
-        <receiver android:name="com.placed.client.android.persistent.PlacedReceiver" android:exported="true">  
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
-                <data android:scheme="package" />
-            </intent-filter> 
-        </receiver>  
 
-* Add required permissions
-        
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>  
-        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>  
-        <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />  
-        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>  
-        <uses-permission android:name="android.permission.INTERNET"/>  
-        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>  
-        <uses-permission android:name="android.permission.WAKE_LOCK"/>  
-  
 * Request runtime location permission (Android 6.0 Marshmallow)
 
-    If your app targets Android 6.0 Marshmallow (API level 23), your app will need prompt for `ACCESS_FINE_LOCATION` permission at runtime. You can read more information in Android's documentation for [Requesting Permissions at Run Time](http://developer.android.com/training/permissions/requesting.html).
+    If your app targets Android 6.0 Marshmallow (API level 23) or higher, your app will need prompt for `ACCESS_FINE_LOCATION` permission at runtime. You can read more information in Android's documentation for [Requesting Permissions at Run Time](http://developer.android.com/training/permissions/requesting.html).
 
     You'll want to add this permission prompt to the Activity that calls `PlacedAgent.registerApp()` or `PlacedAgent.registerAppWithDialog`. For example:
 
