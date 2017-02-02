@@ -6,25 +6,47 @@
 
 1. Add the following to your **root** `build.gradle` file:
 
-```
-allprojects {
-    repositories {
-        ...
+    ```
+    allprojects {
+        repositories {
+            ...
 
-        maven { url "https://raw.githubusercontent.com/placed/android-placed-sdk/master/repository" }
+            maven { url "https://raw.githubusercontent.com/placed/android-placed-sdk/master/repository" }
+        }
     }
-}
-```
+    ```
 
 2. Add the following to your **app** `build.gradle` file:
 
-```
-dependencies {
-    ...
+    ```
+    dependencies {
+        ...
 
-    compile 'com.placed.client:android-persistent-sdk:1.30'
-}
-```
+        compile 'com.placed.client:android-persistent-sdk:1.30'
+    }
+    ```
+
+3. You may encounter Lint error: 'InvalidPackage: Package not included in Android' related to Okio and Retrofit. (This is a known issue with Okio that you can read about [here](https://github.com/square/okio/issues/58).)
+
+    If so, create a `lint.xml` with the following contents:
+    ```
+    <lint>
+        <issue id="InvalidPackage">
+            <ignore regexp=".*okio.*" />
+            <ignore regexp=".*retrofit.*" />
+        </issue>
+    </lint>
+    ```
+
+    And reference it from your **app** `build.gradle` file:
+    ```
+    android {
+        ...
+        lintOptions {
+            lintConfig file("lint.xml")
+        }
+    }
+    ```
   
 ### Configuration
 * Add the application key provided to you by Placed in the application tag of your **AndroidManifest.xml**.
@@ -137,4 +159,3 @@ This method is used for custom integrations with Placed. If you have questions p
   
 `static void logDemographics(Context context, String jsonString, String source, String version)`  
 This method is used for custom integrations with Placed. If you have questions please inquire with your contact at Placed.  
-

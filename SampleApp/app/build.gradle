@@ -17,11 +17,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        lintConfig file("lint.xml")
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.0.1'
-    compile 'com.placed.client:android-persistent-sdk:1.30'
+
+    // Use the latest version of the Placed SDK
+    // noinspection AndroidLintGradleDynamicVersion
+    compile 'com.placed.client:android-persistent-sdk:1.+'
 }
