@@ -1,4 +1,4 @@
-# Placed Affiliate SDK (Android) v1.21
+# Placed Affiliate SDK (Android) v1.30
   
 ## Integrating your application with the Placed Monetization SDK
   
@@ -6,54 +6,55 @@
 
 1. Add the following to your **root** `build.gradle` file:
 
-```
-allprojects {
-    repositories {
-        ...
+    ```
+    allprojects {
+        repositories {
+            ...
 
-        maven { url "https://raw.githubusercontent.com/placed/android-placed-sdk/master/repository" }
+            maven { url "https://raw.githubusercontent.com/placed/android-placed-sdk/master/repository" }
+        }
     }
-}
-```
+    ```
 
 2. Add the following to your **app** `build.gradle` file:
 
-```
-dependencies {
-    ...
+    ```
+    dependencies {
+        ...
 
-    compile 'com.placed.client:android-persistent-sdk:1.21'
-}
-```
+        compile 'com.placed.client:android-persistent-sdk:1.30'
+    }
+    ```
+
+3. You may encounter Lint error: 'InvalidPackage: Package not included in Android' related to Okio and Retrofit. (This is a known issue with Okio that you can read about [here](https://github.com/square/okio/issues/58).)
+
+    If so, create a `lint.xml` with the following contents:
+    ```
+    <lint>
+        <issue id="InvalidPackage">
+            <ignore regexp=".*okio.*" />
+            <ignore regexp=".*retrofit.*" />
+        </issue>
+    </lint>
+    ```
+
+    And reference it from your **app** `build.gradle` file:
+    ```
+    android {
+        ...
+        lintOptions {
+            lintConfig file("lint.xml")
+        }
+    }
+    ```
   
 ### Configuration
-* Add the following in the application tag in your **AndroidManifest.xml**. Make sure to replace **YOUR\_APP\_KEY** with the application key provided to you by Placed. Please be sure to have `BOOT_COMPLETED` and `PACKAGE_REPLACED` in separate intent filters.
-
+* Add the application key provided to you by Placed in the application tag of your **AndroidManifest.xml**.
         <meta-data android:name="placed_app_key" android:value="YOUR_APP_KEY" />  
-        <service android:name="com.placed.client.android.persistent.PlacedService"/>  
-        <receiver android:name="com.placed.client.android.persistent.PlacedReceiver" android:exported="true">  
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
-                <data android:scheme="package" />
-            </intent-filter> 
-        </receiver>  
 
-* Add required permissions
-        
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>  
-        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>  
-        <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />  
-        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>  
-        <uses-permission android:name="android.permission.INTERNET"/>  
-        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>  
-        <uses-permission android:name="android.permission.WAKE_LOCK"/>  
-  
 * Request runtime location permission (Android 6.0 Marshmallow)
 
-    If your app targets Android 6.0 Marshmallow (API level 23), your app will need prompt for `ACCESS_FINE_LOCATION` permission at runtime. You can read more information in Android's documentation for [Requesting Permissions at Run Time](http://developer.android.com/training/permissions/requesting.html).
+    If your app targets Android 6.0 Marshmallow (API level 23) or higher, your app will need prompt for `ACCESS_FINE_LOCATION` permission at runtime. You can read more information in Android's documentation for [Requesting Permissions at Run Time](http://developer.android.com/training/permissions/requesting.html).
 
     You'll want to add this permission prompt to the Activity that calls `PlacedAgent.registerApp()` or `PlacedAgent.registerAppWithDialog`. For example:
 
@@ -158,4 +159,3 @@ This method is used for custom integrations with Placed. If you have questions p
   
 `static void logDemographics(Context context, String jsonString, String source, String version)`  
 This method is used for custom integrations with Placed. If you have questions please inquire with your contact at Placed.  
-
