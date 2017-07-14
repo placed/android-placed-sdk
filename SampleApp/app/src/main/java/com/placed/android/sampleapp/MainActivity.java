@@ -50,6 +50,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void registerApp() {
-        PlacedAgent.registerAppWithDialog(this, getString(R.string.placed_api_key));
+        PlacedAgent.registerAppWithDialog(this);
     }
 }

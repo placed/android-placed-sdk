@@ -82,7 +82,7 @@ Add the application key provided to you by Placed in the application tag of your
 
 If you don't already prompt for fine location permission, you should do so before registering your app with the Placed SDK.
 
-For an example, see the  [main activity in the sample app](https://github.com/placed/android-placed-sdk/blob/master/SampleApp/app/src/main/java/com/placed/android/sampleapp/MainActivity.java)
+For an example, see the [main activity in the sample app](https://github.com/placed/android-placed-sdk/blob/master/SampleApp/app/src/main/java/com/placed/android/sampleapp/MainActivity.java).
 
 Notice in this case the fine location permission is requested before registering the app and acceptance triggers app registion as described below.
 
@@ -93,22 +93,22 @@ Once you've prompted for fine location permission, and on every subsequent app c
 The following code snippet registers the app:
 
 ```java
-PlacedAgent.registerAppWithDialog(this, getString(R.string.placed_api_key));
+PlacedAgent.registerAppWithDialog(this);
 ```
 
-For an example, see the  [main activity in the sample app](https://github.com/placed/android-placed-sdk/blob/master/SampleApp/app/src/main/java/com/placed/android/sampleapp/MainActivity.java)
+For an example, see the [main activity in the sample app](https://github.com/placed/android-placed-sdk/blob/master/SampleApp/app/src/main/java/com/placed/android/sampleapp/MainActivity.java).
 
 In particular, notice how `registerAppWithDialog` is called in both the case where fine location is first requested and in all subsequent app launches.
 
 ## Registration
-Please contact your Placed representative to find out how to register your account. If you do not have a representative yet, please email [affiliate@placed.com](mailto:affiliate@placed.com)
+Please contact your Placed representative to find out how to register your account. If you do not have a representative yet, please email [affiliate@placed.com](mailto:affiliate@placed.com).
 
 ## Support
-For further guidance contact [affiliate@placed.com](mailto:affliate@placed.com)
+For further guidance contact [affiliate@placed.com](mailto:affliate@placed.com).
 
 ## Reference
 
-`static void registerAppWithDialog(final Activity activity, final String appKey)`
+`static void registerAppWithDialog(final Activity activity)`
 
 This is the main method to register your app with the Placed SDK. It first
 checks if the user has already opted in. If not it will show the user an opt-in
@@ -119,7 +119,7 @@ the future.
 This method must be called on every app start, but the opt-in dialog will only
 be presented if the user is not opted in.
 
-`static void registerAppWithDialog(final Activity activity, final String appKey, Integer theme)`
+`static void registerAppWithDialog(final Activity activity, Integer theme)`
 
 Similar to the standard `registerAppWithDialog` method, but pass in a theme
 parameter to use a custom dialog theme for user opt-in. The `theme` parameter
