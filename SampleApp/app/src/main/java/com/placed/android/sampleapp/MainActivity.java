@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, REQUEST_CODE_PERMISSION);
         } else {
             Log.d(TAG, "Already have ACCESS_FINE_LOCATION permission. Proceeding to register app with Placed.");
-            registerApp();
+            PlacedAgent.registerUser(this);
         }
     }
 
@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
             for (int idx = 0; idx < permissions.length; idx++) {
                 if (permissions[idx].equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
                     if (grantResults[idx] == PackageManager.PERMISSION_GRANTED) {
-                        Log.d(TAG, "User granded ACCESS_FINE_LOCATION permission. Proceeding to register app with Placed.");
-                        registerApp();
+                        Log.d(TAG, "User granted ACCESS_FINE_LOCATION permission. Proceeding to register app with Placed.");
+                        PlacedAgent.registerUser(this);
                     } else {
                         Log.d(TAG, "User denied granting ACCESS_FINE_LOCATION permission. Can't proceed to register app with Placed.");
                     }
@@ -47,9 +47,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    private void registerApp() {
-        PlacedAgent.registerAppWithDialog(this);
     }
 }

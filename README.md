@@ -1,4 +1,4 @@
-# Placed Affiliate SDK v4.0.0
+# Placed Affiliate SDK
 
 ## Introduction
 
@@ -68,39 +68,37 @@ Once you've added the Placed SDK as an app dependency, adding the Placed SDK to 
 
 1. Add the Placed provided app key to AndroidManifest.xml
 2. Prompt for location permission
-3. Register your app and prompt for user opt-in to Placed measurement
+3. Register the user for location collection by the Placed SDK.
 
 #### AndroidManifest.xml changes
 
 Add the application key provided to you by Placed in the application tag of your **AndroidManifest.xml**.
 
 ```
-        <meta-data android:name="placed_app_key" android:value="YOUR_APP_KEY" />
+<meta-data android:name="placed_app_key" android:value="YOUR_APP_KEY" />
 ```
 
 #### Prompting for location permission
 
-If you don't already prompt for fine location permission, you should do so before registering your app with the Placed SDK.
+If you don't already prompt for fine location permission, you should do so before registering the user with the Placed SDK.
 
 For an example, see the [main activity in the sample app](https://github.com/placed/android-placed-sdk/blob/master/SampleApp/app/src/main/java/com/placed/android/sampleapp/MainActivity.java).
 
-Notice in this case the fine location permission is requested before registering the app and acceptance triggers app registion as described below.
+Notice in this case the fine location permission is requested before registering the user and acceptance triggers app registion as described below.
 
-### Registering your app and prompting for user opt-in
+### Registering a user
 
-Once you've prompted for fine location permission, and on every subsequent app creation, you need to register your app with the Placed SDK.
+Once you've prompted for fine location permission you need to register your user with the Placed SDK.
 
-The following code snippet registers the app:
+The following code snippet registers the user:
 
 ```java
-PlacedAgent.registerAppWithDialog(this);
+PlacedAgent.registerUser(this);
 ```
 
 For an example, see the [main activity in the sample app](https://github.com/placed/android-placed-sdk/blob/master/SampleApp/app/src/main/java/com/placed/android/sampleapp/MainActivity.java).
 
-In particular, notice how `registerAppWithDialog` is called in both the case where fine location is first requested and in all subsequent app launches.
-
-## Registration
+## How to join
 Please contact your Placed representative to find out how to register your account. If you do not have a representative yet, please email [affiliate@placed.com](mailto:affiliate@placed.com).
 
 ## Support
@@ -108,21 +106,8 @@ For further guidance contact [affiliate@placed.com](mailto:affliate@placed.com).
 
 ## Reference
 
-`static void registerAppWithDialog(final Activity activity)`
+`static void registerUser(final Context context)`
 
-This is the main method to register your app with the Placed SDK. It first
-checks if the user has already opted in. If not it will show the user an opt-in
-dialog for Placed location measurement. On accept, measurement begins.  If the
-user declines they will be excluded from measurement and not prompted again in
-the future.
-
-This method must be called on every app start, but the opt-in dialog will only
-be presented if the user is not opted in.
-
-`static void registerAppWithDialog(final Activity activity, Integer theme)`
-
-Similar to the standard `registerAppWithDialog` method, but pass in a theme
-parameter to use a custom dialog theme for user opt-in. The `theme` parameter
-should be the resource id of the theme you want to use. See
-[Android Styles and Themes](https://developer.android.com/guide/topics/ui/themes.html)
-for more details.
+This is the main method to register the user with the Placed SDK and begin
+location collection by the Placed SDK. If you have EULA or terms of service that the user is required to accept before tracking,
+call this method after the user accepts those terms.
