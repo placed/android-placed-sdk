@@ -35,6 +35,16 @@ Before you can integrate the Placed SDK into your app, you need to add the relev
         // Use the latest patch version of the Placed SDK
         // noinspection AndroidLintGradleDynamicVersion
         compile 'com.placed.client:android-persistent-sdk:4.0.+'
+
+        // NOTE: If you use any Google Play services APIs above version 
+        // 10.0.1, add the following to avoid crashes caused by inconsistent
+        // API versions.
+        compile('com.google.android.gms:play-services-ads:<your-version>') {
+            force = true
+        }
+        compile('com.google.android.gms:play-services-location:<your-version>') {
+            force = true
+        }
     }
     ```
 
