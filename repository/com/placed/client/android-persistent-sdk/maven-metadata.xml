@@ -3,13 +3,14 @@
   <groupId>com.placed.client</groupId>
   <artifactId>android-persistent-sdk</artifactId>
   <versioning>
-    <release>4.0.1</release>
+    <release>4.0.2</release>
     <versions>
       <version>1.20</version>
       <version>1.21</version>
       <version>1.30</version>
       <version>4.0.1</version>
+      <version>4.0.2</version>
     </versions>
-    <lastUpdated>20170810230819</lastUpdated>
+    <lastUpdated>20171027234455</lastUpdated>
   </versioning>
 </metadata>
