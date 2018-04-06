@@ -36,7 +36,7 @@ Before you can integrate the Placed SDK into your app, you need to add the relev
         // noinspection AndroidLintGradleDynamicVersion
         compile 'com.placed.client:android-persistent-sdk:4.0.+'
 
-        // NOTE: If you use any Google Play services APIs above version 
+        // NOTE: If you use any Google Play services APIs above version
         // 10.0.1, add the following to avoid crashes caused by inconsistent
         // API versions.
         compile('com.google.android.gms:play-services-ads:<your-version>') {
@@ -74,19 +74,10 @@ At this point your app should build, although the Placed SDK will not start yet.
 
 ### Second, integrate the Placed SDK
 
-Once you've added the Placed SDK as an app dependency, adding the Placed SDK to your app involves several more steps:
+Once you've added the Placed SDK as an app dependency, completing installation of the Placed SDK to your app involves a couple more steps:
 
-1. Add the Placed provided app key to AndroidManifest.xml
-2. Prompt for location permission
-3. Register the user for location collection by the Placed SDK.
-
-#### AndroidManifest.xml changes
-
-Add the application key provided to you by Placed in the application tag of your **AndroidManifest.xml**.
-
-```
-<meta-data android:name="placed_app_key" android:value="YOUR_APP_KEY" />
-```
+1. Prompt for location permission.
+2. Register the user with Placed SDK.
 
 #### Prompting for location permission
 
@@ -94,19 +85,35 @@ If you don't already prompt for fine location permission, you should do so befor
 
 For an example, see the [main activity in the sample app](https://github.com/placed/android-placed-sdk/blob/master/SampleApp/app/src/main/java/com/placed/android/sampleapp/MainActivity.java).
 
-Notice in this case the fine location permission is requested before registering the user and acceptance triggers app registion as described below.
+Notice in this case the fine location permission is requested before registering the user and acceptance triggers app registration as described below.
 
-### Registering a user
+#### Registering a user
 
-Once you've prompted for fine location permission you need to register your user with the Placed SDK.
+Once you've prompted for fine location permission you need to register the user with the Placed SDK. You've got __two options__ when registering a user with the Placed SDK.
 
-The following code snippet registers the user:
+**Option 1.** You can add the app key provided to you by Placed in the application tag of your AndroidManifest.xml.
+
+First, add your app key to the **AndroidManifest.xml**:
+
+```
+<meta-data android:name="placed_app_key" android:value="YOUR_APP_KEY" />
+```
+
+And then call:
 
 ```java
 PlacedAgent.registerUser(this);
 ```
 
 For an example, see the [main activity in the sample app](https://github.com/placed/android-placed-sdk/blob/master/SampleApp/app/src/main/java/com/placed/android/sampleapp/MainActivity.java).
+
+**Option 2.** You can add the app key provided to you by Placed at runtime.
+
+All you have to do is call:
+
+```java
+PlacedAgent.registerUser(this, "YOUR_APP_KEY");
+```
 
 ## How to join
 Please contact your Placed representative to find out how to register your account. If you do not have a representative yet, please email [affiliate@placed.com](mailto:affiliate@placed.com).
