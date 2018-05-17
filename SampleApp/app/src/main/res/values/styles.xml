@@ -6,6 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:buttonStyle">@style/RoundedCornerButton</item>
+        <item name="buttonStyle">@style/RoundedCornerButton</item>
+    </style>
+
+    <style name="RoundedCornerButton" parent="AppTheme">
+        <item name="android:background">@drawable/rounded_corners_shape</item>
     </style>
 
 </resources>
