@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Placed SDK for Android is designed to help you add Placed location gathering to your app. It exposes simple public API calls that can be used to turn location gathering on.
+The Placed SDK for Android is designed to help you add Placed location gathering to your app. It exposes simple public API calls that can be used to turn on and off location gathering.
 
 The SDK has been designed for easy setup and integration with both new and existing mobile applications.
 
@@ -88,7 +88,7 @@ Add the application key provided to you by Placed in the application tag of your
 <meta-data android:name="placed_app_key" android:value="YOUR_APP_KEY" />
 ```
 
-#### Opt-in Dialogue and Prompting for Location Permission
+#### Location Permission
 
 As outlined in Section 5 of the [Placed Affiliate Agreement](https://affiliate.placed.com/placed-affiliate-agreement/), you must satisfy two requirements prior to registering a user with the Placed SDK:  
 1. *Gather Express Consent for User Data Collection via Opt-in Dialog*  
@@ -103,9 +103,9 @@ Eligible users must allow fine location permission, which subsequently triggers 
 
 For an example of the opt-in dialog and location permission prompt, please refer to the [main activity of the sample app](./SampleApp/app/src/main/java/com/placed/android/sampleapp/MainActivity.java). We have also provided a [gallery for inspiration](./gallery) on how you can better integrate the opt-in experience into your app.
 
-### Registering a user
+#### Register a user
 
-Once you've prompted for fine location permission you need to register your user with the Placed SDK.
+Once you've prompted for location permission and gathered express consent to collect user data, you need to register your user with the Placed SDK.
 
 The following code snippet registers the user:
 
@@ -119,12 +119,4 @@ For an example, see the [main activity in the sample app](https://github.com/pla
 Please contact your Placed representative to find out how to register your account. If you do not have a representative yet, please email [affiliate@placed.com](mailto:affiliate@placed.com).
 
 ## Support
-For further guidance contact [affiliate@placed.com](mailto:affliate@placed.com).
-
-## Reference
-
-`static void registerUser(final Context context)`
-
-This is the main method to register the user with the Placed SDK and begin
-location collection by the Placed SDK. If you have EULA or terms of service that the user is required to accept before tracking,
-call this method after the user accepts those terms.
+For further guidance, please contact [affiliate@placed.com](mailto:affliate@placed.com).
