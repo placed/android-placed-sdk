@@ -28,5 +28,5 @@ dependencies {
 
     // Use the latest patch version of the Placed SDK
     // noinspection AndroidLintGradleDynamicVersion
-    implementation 'com.placed.client:android-persistent-sdk:4.0.+'
+    implementation 'com.placed.client:android-persistent-sdk:4.1.+'
 }
