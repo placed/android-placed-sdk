@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.Window;
 
 enum SampleDialogAction {
-    TERMS, PRIVACY, ACCEPT, CANCEL;
+    TERMS, PRIVACY, ACCEPT, CANCEL
 }
 
 public class SampleDialog extends Dialog {
@@ -18,7 +18,7 @@ public class SampleDialog extends Dialog {
 
     public SampleDialogListener onActionListener;
 
-    public SampleDialog(@NonNull Context context) {
+    SampleDialog(@NonNull Context context) {
         super(context);
     }
 

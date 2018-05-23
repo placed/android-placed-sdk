@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.placed.client.android.persistent.PlacedAgent;
 
@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity implements SampleDialog.Samp
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private static final int REQUEST_CODE_PERMISSION = 1;
-    private static final String TERMS_AND_PRIVACY_ACCEPTED_KEY = "terms_and_privacy_accepted";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements SampleDialog.Samp
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "Requesting for ACCESS_FINE_LOCATION permission.");
-            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, REQUEST_CODE_PERMISSION);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_PERMISSION);
         } else {
             Log.d(TAG, "Already have ACCESS_FINE_LOCATION permission. Proceeding to register app with Placed.");
             registerUser();
@@ -54,12 +53,12 @@ public class MainActivity extends AppCompatActivity implements SampleDialog.Samp
     }
 
     private void registerUser() {
-        if (!PreferenceManager.getDefaultSharedPreferences(this).getBoolean(TERMS_AND_PRIVACY_ACCEPTED_KEY, false)) {
+        if (!PlacedAgent.isUserRegistered(this)) {
             SampleDialog sampleDialog = new SampleDialog(this);
             sampleDialog.show();
             sampleDialog.onActionListener = this;
         } else {
-            PlacedAgent.registerUser(MainActivity.this);
+            Toast.makeText(this, "User already registered!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -69,20 +68,20 @@ public class MainActivity extends AppCompatActivity implements SampleDialog.Samp
             case TERMS:
                 Intent termsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.placed.com/terms-of-service"));
                 startActivity(termsIntent);
-            break;
+                break;
 
             case PRIVACY:
                 Intent privacyIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.placed.com/privacy-policy"));
                 startActivity(privacyIntent);
-            break;
+                break;
 
             case ACCEPT:
-                PlacedAgent.registerUser(MainActivity.this);
-                PreferenceManager.getDefaultSharedPreferences(this)
-                        .edit()
-                        .putBoolean(TERMS_AND_PRIVACY_ACCEPTED_KEY, true)
-                        .apply();
-            break;
+                PlacedAgent.registerUser(this);
+                break;
+
+            case CANCEL:
+                PlacedAgent.deregisterUser(this);
+                break;
 
             default:
                 break;
