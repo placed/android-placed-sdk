@@ -3,4 +3,13 @@
 
     <!-- Put your Placed app key here -->
     <string name="placed_api_key">YOUR_APP_KEY</string>
+
+    <!-- Sample dialog strings -->
+    <string name="sample_dialog_title">Market Research</string>
+    <string name="sample_dialog_message">Aggregated device data, including location and apps, is measured for the purposes of market research by Placed, Inc.</string>
+    <string name="sample_dialog_terms_title">Terms of Service</string>
+    <string name="sample_dialog_privacy_title">Privacy Policy</string>
+    <string name="sample_dialog_accept_btn">Accept</string>
+    <string name="sample_dialog_cancel_btn">Cancel</string>
+    <string name="hello_from_placed">Hello from Placed!</string>
 </resources>
